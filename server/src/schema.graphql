@@ -1,0 +1,52 @@
+type Query {
+  movies(page: Int): Movies!
+  moviesById(ids: [Int]): [Movie]
+  translateMovie(id: Int): Translations!
+}
+type Movies {
+  page: Int!
+  totalResults: Int!
+  totalPages: Int!
+  results: [Movie]!
+}
+type Movie {
+  id: Int!
+  title: String!
+  posterPath: String
+  releaseDate(format: String): String!
+  genres: [Genre]
+  poster_path: String
+  adult: Boolean
+  overview: String
+  original_title: String
+  originalLanguage: String
+  backdropPath: String
+  popularity: Float
+  vote_count: Float
+  video: Boolean
+  vote_average: Int
+}
+
+type Genre {
+  id: Int!
+  name: String!
+}
+
+type Translations {
+  id: Int!
+  translations: [MovieLocalization]
+}
+
+type MovieLocalization {
+  iso_3166_1: String!
+  iso_639_1: String!
+  name: String!
+  english_name: String!
+  data: TranslatedMovie
+}
+
+type TranslatedMovie {
+  title: String!
+  overview: String!
+  homepage: String!
+}
